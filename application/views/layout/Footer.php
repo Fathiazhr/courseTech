@@ -97,10 +97,8 @@
 <script src="<?= base_url() ?>assets/js/jquery.shuffle.min.js"></script>
 
 <script src="<?= base_url() ?>assets/js/theme.js"></script>
-<!-- End Include All JS -->
-<script type="module">
-  // Import the functions you need from the SDKs you need
 
+<script type="module">
   import {
     initializeApp
   } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
@@ -112,21 +110,14 @@
     query,
     set,
     remove,
-    update
+    update,
+    child
   } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"
 
   import {
     getAnalytics
   } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
 
-  // TODO: Add SDKs for Firebase products that you want to use
-
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-
-  // Your web app's Firebase configuration
-
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
   const firebaseConfig = {
 
@@ -148,9 +139,7 @@
 
   };
 
-
   // Initialize Firebase
-
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app)
 
@@ -159,7 +148,7 @@
     password: ''
   }
 
-  // inisialisais database user 
+  // inisialisais database  
   const userRef = ref(database, `user`)
   const kategoriRef = ref(database, `kategori`)
 
@@ -275,7 +264,61 @@
       })
     }
   })
+
+  // menampilkan produk
+  onValue(ref(database, 'produk'), (snapshot) => {
+    const data = snapshot.val();
+    let htmlProduk = ''
+    let listProduk = data.filter(item => item !== undefined || item !== null);
+
+    listProduk.forEach((item, index) => {
+      let kategori;
+      get(child(ref(database), `kategori/${item.idKategori}`)).then((snap) => {
+        htmlProduk += `<tr>
+        <td>${++index}</td>
+        <td>${item.name}</td>w
+        <td>${item.price}</td>
+        <td>${snap.val().name}</td>
+        <td>${item.instructur}</td>
+              <td>
+              <a href="javascript:void(0)" name='update-produk' data-produk='${JSON.stringify(item)}' data-toggle="modal" data-target="#modalProduk">
+              <i class="fas fa-edit text-info mr-2"></i>
+              </a>
+              <a href="javascript:void(0)" name='update-produk' data-produk='${JSON.stringify(item)}' data-toggle="modal" data-target="#modalProduk">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </a>
+                  <a href="javascript:void(0)" name='hapus-produk' data-id="${item.id}">
+                  <i class="fas fa-trash text-danger"></i>
+                  </a> 
+                  </td>
+                  </tr>`
+        $('#data-produk').html(htmlProduk)
+      })
+
+    })
+
+
+
+
+    // // fungsi hapus kategori 
+    // $('a[name="hapus-kategori"]').click(function() {
+    //   remove(ref(database, `kategori/${$(this).attr('data-id')}`)).then(() => {
+    //     alert('Kategori berhasil dihapus')
+    //   }).catch(e => alert(`kategori gagal dihapus, error : ${e}`))
+
+    // })
+
+    // // buka modal update kategori
+    // $('a[name="update-kategori"]').click(function() {
+    //   let kategoriUpdate = $(this).data('kategori')
+    //   $("input[name='nama-kategori']").val(kategoriUpdate.name)
+    //   idKategoriUpdate = kategoriUpdate.id
+    //   buttonKategoriFor = 'update'
+    // })
+
+  })
 </script>
+
 <script>
   let modalBodyFor = 'login'
   const modalBody = $('#modalBody')
@@ -337,7 +380,7 @@
                               <a href="<?= base_url('account/kategori') ?>">Kategori</a>
                           </li>
                           <li class="list-group-item bg-transparent border-0">
-                              <a href="">Produk</a>
+                              <a href="<?= base_url('account/produk') ?>">Produk</a>
                           </li>
                           <li class="list-group-item bg-transparent border-0">
                               <a href="">Customer</a>
@@ -354,7 +397,7 @@
     }
   }
 
-  // redirect login 
+  // fungsi login 
   const auth = JSON.parse(localStorage.getItem('auth'))
   if (!auth) {
     if (window.location.href.includes('account')) {
@@ -362,7 +405,7 @@
     }
   }
 
-  // handle logout 
+  // fungsi logout 
   function handleLogout() {
     localStorage.clear()
     window.location.replace('http://localhost/coursetech/')

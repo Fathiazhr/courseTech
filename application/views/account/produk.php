@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-end">
-    <button type="button" name="tambah-kategori" data-toggle="modal" data-target="#modalKategori" class="btn bisylms-btn mb-3">Tambah Kategori</button>
+    <button type="button" name="tambah-kategori" data-toggle="modal" data-target="#modalProduk" class="btn bisylms-btn mb-3">Tambah Produk</button>
 </div>
 <table class="table">
     <thead>
@@ -12,7 +12,28 @@
             <th></th>
         </tr>
     </thead>
-    <tbody id="data-kategori">
+    <tbody id="data-produk">
 
     </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="modalProduk" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Body
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
