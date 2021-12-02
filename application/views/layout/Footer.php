@@ -265,7 +265,7 @@
     }
   })
 
-  // menampilkan produk
+  // menampilkan produk untuk admin
   onValue(ref(database, 'produk'), (snapshot) => {
     const data = snapshot.val();
     let htmlProduk = ''
@@ -297,9 +297,6 @@
 
     })
 
-
-
-
     // // fungsi hapus kategori 
     // $('a[name="hapus-kategori"]').click(function() {
     //   remove(ref(database, `kategori/${$(this).attr('data-id')}`)).then(() => {
@@ -315,6 +312,45 @@
     //   idKategoriUpdate = kategoriUpdate.id
     //   buttonKategoriFor = 'update'
     // })
+
+  })
+  // menampilkan produk untuk customer
+  onValue(ref(database, 'produk'), (snapshot) => {
+    const data = snapshot.val();
+    let htmlProduk = ''
+    let listProduk = data.filter(item => item !== undefined || item !== null);
+    listProduk.forEach((item, index) => {
+      let kategori;
+      get(child(ref(database), `kategori/${item.idKategori}`)).then((snap) => {
+        htmlProduk += `<div class="col-lg-4 col-md-6">
+                                <div class="feature-course-item-4">
+                                    <div class="fcf-thumb">
+                                        <img src="<?= base_url(); ?>assets/images/profile/1.jpg" alt="">
+                                        <a class="enroll" href="#">Enroll Now</a>
+                                    </div>
+                                    <div class="fci-details">
+                                        <a href="<?= base_url('/course/detail/') ?>${item.id}" class="c-cate"><i class="icon_tag_alt"></i>${snap.val().name}</a>
+                                        <h4><a href="<?= base_url('/course/detail/') ?>${item.id}">${item.name}</a></h4>
+                                        <div class="author">
+                                            <img src="<?= base_url(); ?>assets/images/home3/course/a1.png" alt="">
+                                            <a href="#">${item.instructur}</a>
+                                        </div>
+                                        <div class="price-rate">
+                                            <div class="course-price">
+                                            ${item.price > 0 ? item.price :' Free' }
+                                            </div>
+                                            <div class="ratings">
+                                                <i class="icon_star"></i>
+                                                <span>4.5 (2,420)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
+        $('#data-course').html(htmlProduk)
+      })
+    })
+
 
   })
 </script>

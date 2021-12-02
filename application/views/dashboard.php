@@ -162,7 +162,7 @@
                             <p>Computer Science</p>
                             <h4>Using Creative Problem Solving</h4>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>10 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>10 Materi</a>
 
                             </div>
                         </div>
@@ -181,15 +181,15 @@
                                 <span>4.5 (1 Reviews)</span>
                             </div>
                             <div class="course-price">
-                                $38.00
-                                <span>$50.00</span>
+                                Rp. 340.000
+                                <span>Rp. 540.000</span>
                             </div>
                             <div class="author">
                                 <img src="<?= base_url(); ?>assets/images/home/course/author.png" alt="">
                                 <a href="#">Anthony</a>
                             </div>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>10 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>10 Materi</a>
 
                             </div>
                         </div>
@@ -206,7 +206,7 @@
                             <p>Art & Design</p>
                             <h4>The Art of Black and White Photography</h4>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>14 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>14 Materi</a>
 
                             </div>
                         </div>
@@ -225,15 +225,15 @@
                                 <span>4.5 (2 Reviews)</span>
                             </div>
                             <div class="course-price">
-                                $36.00
-                                <span>$60.00</span>
+                                Rp. 430.000
+                                <span>Rp. 760.000</span>
                             </div>
                             <div class="author">
                                 <img src="<?= base_url(); ?>assets/images/home/course/author.png" alt="">
                                 <a href="#">Anthony</a>
                             </div>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>14 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>14 Materi</a>
 
                             </div>
                         </div>
@@ -250,7 +250,7 @@
                             <p>Business Study</p>
                             <h4>Learning jQuery Mobile for Beginners</h4>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>9 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>9 Materi</a>
                             </div>
                         </div>
                         <div class="back">
@@ -268,15 +268,15 @@
                                 <span>4.5 (2 Reviews)</span>
                             </div>
                             <div class="course-price">
-                                $30.00
-                                <span>$40.00</span>
+                                Rp. 120.000
+                                <span>Rp. 723.000</span>
                             </div>
                             <div class="author">
                                 <img src="<?= base_url(); ?>assets/images/home/course/author.png" alt="">
                                 <a href="#">Anthony</a>
                             </div>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>9 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>9 Materi</a>
                             </div>
                         </div>
                     </div>
@@ -292,7 +292,7 @@
                             <p>Web Development</p>
                             <h4>Making Music with Other People</h4>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>12 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>12 Materi</a>
 
                             </div>
                         </div>
@@ -311,15 +311,15 @@
                                 <span>4.5 (2 Reviews)</span>
                             </div>
                             <div class="course-price">
-                                $45.00
-                                <span>$55.00</span>
+                                Rp. 329.777
+                                <span>Rp. 783.883</span>
                             </div>
                             <div class="author">
                                 <img src="<?= base_url(); ?>assets/images/home/course/author.png" alt="">
                                 <a href="#">Anthony</a>
                             </div>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>12 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>12 Materi</a>
 
                             </div>
                         </div>
@@ -336,7 +336,7 @@
                             <p>UI/UXDesign</p>
                             <h4>Fundamentals of<br> UI Design</h4>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>8 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>8 Materi</a>
 
                             </div>
                         </div>
@@ -355,15 +355,15 @@
                                 <span>4.5 (2 Reviews)</span>
                             </div>
                             <div class="course-price">
-                                $40.00
-                                <span>$50.00</span>
+                                Rp. 216.933
+                                <span>Rp. 639.990</span>
                             </div>
                             <div class="author">
                                 <img src="<?= base_url(); ?>assets/images/home/course/author.png" alt="">
                                 <a href="#">Anthony</a>
                             </div>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>8 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>8 Materi</a>
 
                             </div>
                         </div>
@@ -380,7 +380,7 @@
                             <p>Data Science</p>
                             <h4>Buddhism and Modern Psychology</h4>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>18 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>18 Materi</a>
 
                             </div>
                         </div>
@@ -399,15 +399,15 @@
                                 <span>4.5 (2 Reviews)</span>
                             </div>
                             <div class="course-price">
-                                $65.00
-                                <span>$75.00</span>
+                                Rp. 145.000
+                                <span>Rp. 762.009</span>
                             </div>
                             <div class="author">
                                 <img src="<?= base_url(); ?>assets/images/home/course/author.png" alt="">
                                 <a href="#">Anthony</a>
                             </div>
                             <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>18 Lessons</a>
+                                <a href="#"><i class="icon_book_alt"></i>18 Materi</a>
 
                             </div>
                         </div>
