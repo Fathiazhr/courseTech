@@ -22,6 +22,8 @@ class Welcome extends CI_Controller
 	public function index()
 	{
 		$this->load->view('layout/Header');
+		$this->load->view('layout/Navbar', ["forAct" => '']);
+		// $this->load->view('layout/Jumbotron');
 		$this->load->view('dashboard');
 		$this->load->view('layout/Footer');
 	}
