@@ -192,6 +192,15 @@
     let dataFilter = ''
     listKategori = data.filter(item => item !== undefined || item !== null);
 
+    const DLKat = listKategori.map((item, index)=>{
+      return `<option value="${item.id}">${item.name}</option>`
+    });
+    DLKat.unshift(`<option value="">Silahkan Pilih Kategori Produk</option>`);
+
+    console.log(DLKat)
+
+    $("#produkkategori").html(DLKat.toString().replaceAll(",",""))
+
     data.filter(item => item !== undefined || item !== null).forEach((item, index) => {
       dataFilter += `<tr>
       <td>${++index}</td>
@@ -234,6 +243,14 @@
     $("input[name='nama-kategori']").val('')
   })
 
+  $('button[name="tambah-produk"]').click(() => {
+    buttonProdukFor = 'simpan'
+    $("input[name='name']").val('')
+    $("input[name='instructur']").val('')
+    $("input[name='price']").val('')
+    $("input[name='idKategori']").val('')
+  })
+
   // input nama kategori
   let namaKategori = ''
   $("input[name='nama-kategori']").keyup(e => {
@@ -266,12 +283,54 @@
     }
   })
 
+  $("button[name='button-produk']").click(() => {
+    if (buttonProdukFor === 'update') {
+      update(ref(database, `produk/${idProdukUpdate}`), {
+        name: namaKategori
+      }).then(() => {
+        alert('kategori berhasil diubah')
+      }).catch(e => {
+        alert(`error ${e}`)
+      })
+    } else {
+      // const idProduk = listProduk.length + 1
+      // listProduk.map((item, index)=>{
+      //   console.log(item)
+      // })
+      const idProdukArr = []
+      dataProdukAdmin.data.map((item, index)=>{
+        idProdukArr.push(item.id)
+      })
+      const sortIdProduk = idProdukArr.sort();
+      const lastId = sortIdProduk[sortIdProduk.length - 1] + 1;
+      set(ref(database, `produk/${lastId}`), {
+        id: lastId,
+        idKategori: $("#produkkategori").val(),
+        instructur: $("#produkinstructur").val(),
+        name: $("#produkname").val(),
+        price: $("#produkprice").val(),
+      }).then(() => {
+        alert('kategori berhasil ditambahkan')
+        $("#modalProduk").modal('hide')
+      }).catch(e => {
+        alert(`error ${e}`)
+      })
+    }
+  })
+
   // menampilkan produk untuk admin
+
+  let listProduk = [],
+    idProdukUpdate,
+    buttonProdukFor = 'simpan';
+
+    var dataProdukAdmin = {}
+
   onValue(ref(database, 'produk'), (snapshot) => {
     const data = snapshot.val();
     let htmlProduk = ''
-    let listProduk = data.filter(item => item !== undefined || item !== null);
-
+    listProduk = data.filter(item => item !== undefined || item !== null);
+    dataProdukAdmin.data = listProduk;
     listProduk.forEach((item, index) => {
       let kategori;
       get(child(ref(database), `kategori/${item.idKategori}`)).then((snap) => {
@@ -472,7 +531,7 @@
         <h4>Anda belum berlangganan</h4>
       </div>`
     } else {
-      let listProduk = data.filter(item => item !== undefined || item !== null);
+      listProduk = data.filter(item => item !== undefined || item !== null);
       listProduk.forEach((item, index) => {
         let kategori;
         htmlProduk += `<div class="col-lg-6 col-md-6">
