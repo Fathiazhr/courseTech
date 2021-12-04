@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-end">
-    <button type="button" name="tambah-kategori" data-toggle="modal" data-target="#modalProduk" class="btn bisylms-btn mb-3">Tambah Produk</button>
+    <button type="button" name="tambah-produk" data-toggle="modal" data-target="#modalProduk" class="btn bisylms-btn mb-3">Tambah Produk</button>
 </div>
 <table class="table">
     <thead>
@@ -28,11 +28,28 @@
                 </button>
             </div>
             <div class="modal-body">
-                Body
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Example select</label>
+                    <select class="form-control" name="idKategori" id="produkkategori">
+                    
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Instructur</label>
+                    <input type="text" class="form-control" name="instructur" id="produkinstructur">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Name</label>
+                    <input type="text" name="name" class="form-control" id="produkname">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Price</label>
+                    <input type="text" name="price" class="form-control" id="produkprice">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" name="button-produk" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
