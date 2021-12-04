@@ -20,7 +20,7 @@
                 <div class="toolbar-wrapper-2">
                     <div class="toolbar-btn nav nav-tabs">
                     </div>
-                    <div class="sorting">
+                    <!-- <div class="sorting">
                         <p>Urutkan berdasarkan:</p>
                         <select name="orderby" class="orderby">
                             <option value="menu_order" selected="selected">Default</option>
@@ -30,7 +30,7 @@
                             <option value="price">Low to High</option>
                             <option value="price-desc">High to Low</option>
                         </select>
-                    </div>
+                    </div> -->
                     <form class="search-box" method="post" action="#">
                         <input type="search" name="s" placeholder="Cari kursus...">
                         <button type="submit"><i class="ti-search"></i></button>

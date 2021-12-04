@@ -7,7 +7,7 @@
           <img src="<?= base_url(); ?>assets/images/home/2.png" alt="">
 
           <h3>You can learn anything</h3>
-          <a href="javascript:void(0)" data-toggle="modal" data-target="#modelId" onclick="handleChangeRegister()" class="bisylms-btn">Join Now</a>
+          <a href="javascript:void(0)" class="bisylms-btn">Join Now</a>
         </div>
       </div>
     </div>
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <!-- Copyrigh -->
+    <!-- Copyright -->
   </div>
 </footer>
 
@@ -185,6 +185,7 @@
   let listKategori = [],
     idKategoriUpdate,
     buttonKategoriFor = 'simpan';
+
   // baca data kategori
   onValue(kategoriRef, (snapshot) => {
     const data = snapshot.val();
@@ -297,23 +298,8 @@
 
     })
 
-    // // fungsi hapus kategori 
-    // $('a[name="hapus-kategori"]').click(function() {
-    //   remove(ref(database, `kategori/${$(this).attr('data-id')}`)).then(() => {
-    //     alert('Kategori berhasil dihapus')
-    //   }).catch(e => alert(`kategori gagal dihapus, error : ${e}`))
-
-    // })
-
-    // // buka modal update kategori
-    // $('a[name="update-kategori"]').click(function() {
-    //   let kategoriUpdate = $(this).data('kategori')
-    //   $("input[name='nama-kategori']").val(kategoriUpdate.name)
-    //   idKategoriUpdate = kategoriUpdate.id
-    //   buttonKategoriFor = 'update'
-    // })
-
   })
+
   // menampilkan produk untuk customer
   onValue(ref(database, 'produk'), (snapshot) => {
     const data = snapshot.val();
@@ -326,7 +312,7 @@
                                 <div class="feature-course-item-4">
                                     <div class="fcf-thumb">
                                         <img src="<?= base_url(); ?>assets/images/profile/1.jpg" alt="">
-                                        <a class="enroll" href="#">Enroll Now</a>
+                                        <a class="enroll" name='buy-course' href="javascript:void(0)" data-course='${JSON.stringify({...item,kategori:snap.val().name})}'>Beli</a>
                                     </div>
                                     <div class="fci-details">
                                         <a href="<?= base_url('/course/detail/') ?>${item.id}" class="c-cate"><i class="icon_tag_alt"></i>${snap.val().name}</a>
@@ -337,7 +323,7 @@
                                         </div>
                                         <div class="price-rate">
                                             <div class="course-price">
-                                            ${item.price > 0 ? item.price :' Free' }
+                                            ${item.price > 0 ? formatRupiah(item.price ):' Free' }
                                             </div>
                                             <div class="ratings">
                                                 <i class="icon_star"></i>
@@ -347,9 +333,215 @@
                                     </div>
                                 </div>
                             </div>`
+
         $('#data-course').html(htmlProduk)
+
+        let products;
+        let transactions;
+        $('a[name="buy-course"]').click(function() {
+          const course = $(this).data('course');
+          if (auth) {
+            // fungsi menampilkan list transaksi
+            onValue(ref(database, 'transaksi'), (snap) => {
+              if (snap.val() === null) {
+                transactions = snap.val()
+              } else {
+                transactions = snap.val().filter(item => item !== undefined && item !== null)
+              }
+            })
+
+            onValue(ref(database, 'produk-user'), (snap) => {
+              if (snap.val() === null) {
+                products = snap.val()
+              } else {
+                products = snap.val().filter(item => item !== undefined && item !== null)
+              }
+            })
+
+            if (products === null || products === undefined || transactions === null || transactions === undefined) {
+              set(ref(database, `transaksi/1`), {
+                idProduk: course.id,
+                idUser: user.id,
+                tanggalPembelian: new Date(Date.now()).toLocaleDateString(),
+                id: 1
+              })
+              set(ref(database, `produk-user/1`), {
+                idUser: user.id,
+                id: 1,
+                instructur: course.instructur,
+                kategori: course.kategori,
+                namaProduk: course.name
+              })
+              alert('Pembelian Berhasil')
+            } else {
+              set(ref(database, `transaksi/${transactions[transactions.length - 1].id + 1}`), {
+                idProduk: course.id,
+                idUser: user.id,
+                tanggalPembelian: new Date(Date.now()).toLocaleDateString(),
+                id: transactions[transactions.length - 1].id + 1
+              })
+              set(ref(database, `produk-user/${products[products.length - 1].id + 1}`), {
+                idUser: user.id,
+                id: products[products.length - 1].id + 1,
+                instructur: course.instructur,
+                kategori: course.kategori,
+                namaProduk: course.name
+              })
+              alert('Pembelian Berhasil')
+            }
+          } else {
+            $('#modelId').modal('show');
+          }
+        })
       })
     })
+  })
+
+  // registrasi
+  const userRegis = {
+    name: '',
+    email: '',
+    password: ''
+  }
+
+  $('input[name="regis-name"]').keyup(e => {
+    userRegis.name = e.target.value
+  })
+
+  $('input[name="regis-email"]').keyup(e => {
+    userRegis.email = e.target.value
+  })
+
+  $('input[name="regis-password"]').keyup(e => {
+    userRegis.password = e.target.value
+  })
+
+  let users = [];
+  onValue(userRef, snap => {
+    users = snap.val().filter(item => item !== undefined && item !== null)
+  })
+  // fungsi regis
+  $('#button-regis').click(e => {
+    if (users.length > 0) {
+      set(ref(database, `user/${users.length + 1}`), {
+        ...userRegis,
+        id: users.length + 1,
+        role: 'customer'
+      }).then(() => {
+        alert('Berhasil registrasi')
+      }).catch(e => {
+        alert(`error ${e}`)
+      })
+    }
+  })
+
+  // fungsi update profile
+  $('input[name="input-user-name"]').keyup((e) => {
+    userRegis.name = e.target.value
+  })
+  $('input[name="input-user-password"]').keyup(e => {
+    userRegis.password = e.target.value
+
+  })
+  $('#button-update-profile').click(e => {
+    update(ref(database, `user/${user.id}`), {
+      ...user,
+      name: userRegis.name,
+      password: userRegis.password
+    }).then(() => {
+      alert('Berhasil update')
+      localStorage.setItem('user', JSON.stringify({
+        ...user,
+        name: userRegis.name,
+        password: userRegis.password
+      }))
+    }).catch(e => {
+      alert(`error ${e}`)
+    })
+
+  })
+
+
+  // menampilkan kursus yang dipilih customer
+  onValue(ref(database, 'produk-user'), (snapshot) => {
+    const data = snapshot.val();
+    let htmlProduk = ''
+    if (data === null || data === undefined) {
+      htmlProduk += `<div class='d-flex w-100 mt-3 flex-column justify-content-center align-items-center'>
+      <img src='<?= base_url() ?>assets/images/home/course/4.png' />
+        <h4>Anda belum berlangganan</h4>
+      </div>`
+    } else {
+      let listProduk = data.filter(item => item !== undefined || item !== null);
+      listProduk.forEach((item, index) => {
+        let kategori;
+        htmlProduk += `<div class="col-lg-6 col-md-6">
+                                  <div class="feature-course-item-4">
+                                      <div class="fcf-thumb">
+                                          <img src="<?= base_url(); ?>assets/images/profile/1.jpg" alt="">
+                                          <a class="enroll" name='remove-course' href="javascript:void(0)" data-course='${JSON.stringify({...item})}'>Berhenti Langganan</a>
+                                      </div>
+                                      <div class="fci-details">
+                                          <a href="<?= base_url('/course/detail/') ?>${item.id}" class="c-cate"><i class="icon_tag_alt"></i>${item.kategori}</a>
+                                          <h4><a href="<?= base_url('/course/detail/') ?>${item.id}">${item.namaProduk}</a></h4>
+                                          <div class="author">
+                                              <img src="<?= base_url(); ?>assets/images/home3/course/a1.png" alt="">
+                                              <a href="#">${item.instructur}</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>`
+      })
+    }
+    $('#data-materi').html(htmlProduk)
+
+    $('a[name="remove-course"]').click(function() {
+      const course = $(this).data('course');
+
+      remove(ref(database, `produk-user/${course.id}`)).then(() => {
+        alert('Berhasil berhenti berlangganan')
+      }).catch(e => alert(`error : ${e}`))
+    })
+  })
+
+  // menampilkan transaksi per customer
+  onValue(ref(database, 'transaksi'), (snapshot) => {
+    const data = snapshot.val();
+    let htmlTransaksi = ''
+    if (data !== null) {
+      let listTransaksi = []
+      if (user.role === 'admin') {
+        listTransaksi = data.filter(item => item !== undefined || item !== null);
+      } else {
+        listTransaksi = data.filter(item => item !== undefined || item !== null && item.idUser === user.id)
+      }
+
+      listTransaksi.forEach((item, index) => {
+        get(child(ref(database), `produk/${item.idProduk}`)).then((snap) => {
+          htmlTransaksi += `<tr>
+          <td>${++index}</td>
+          <td>${snap.val().name}</td>
+          <td>${snap.val().price}</td>
+          <td>${item.tanggalPembelian}</td>
+                <td>
+                    <a href="javascript:void(0)" name='hapus-transaksi' data-id="${item.id}">
+                    <i class="fas fa-trash text-danger"></i>
+                    </a> 
+                    </td>
+                    </tr>`
+          $('#data-transaksi').html(htmlTransaksi)
+
+          $('a[name="hapus-transaksi"]').click(function() {
+            const idTransaksi = $(this).data('id');
+            remove(ref(database, `transaksi/${idTransaksi}`)).then(() => {
+              alert('transaksi berhasil dihapus')
+            }).catch(e => alert(`error : ${e}`))
+          })
+        })
+
+      })
+    }
+
 
 
   })
@@ -357,60 +549,32 @@
 
 <script>
   let modalBodyFor = 'login'
-  const modalBody = $('#modalBody')
-
-  modalBody.html(`<div class="form-group">
-                      <label for="">Email</label>
-                      <input type="email" class="form-control" name="" id="email" aria-describedby="emailHelpId" placeholder="Masukan Email ...">
-                  </div>
-                  <div class="form-group">
-                      <label for="">Password</label>
-                      <input type="password" class="form-control" name="" id="password" aria-describedby="emailHelpId" placeholder="Masukan password ...">
-                  </div>
-                  <button type="button" name='login' class="btn btn-block bisylms-btn mb-3">Login</button>
-                  <small class="text-muted">Belum punya akun? <a href='javascript:void(0)' onclick='handleChangeRegister()'>Daftar Sekarang</a> </small>`)
-
-  function handleChangeLogin() {
-    modalBody.html(`<div class="form-group">
-                      <label for="">Email</label>
-                      <input type="email" class="form-control" name="" id="name" aria-describedby="emailHelpId" placeholder="Masukan Email ...">
-                  </div>
-                  <div class="form-group">
-                      <label for="">Password</label>
-                      <input type="password" class="form-control" name="password" id="password"  placeholder="Masukan password ...">
-                  </div>
-                  <button type="button" name='login' class="btn btn-block bisylms-btn mb-3">Login</button>
-                  <small class="text-muted">Belum punya akun? <a href='javascript:void(0)' onclick='handleChangeRegister()'>Daftar Sekarang</a> </small>`)
-  }
+  const formRegis = $('#form-register').addClass('d-none')
+  const formLogin = $('#form-login')
 
   function handleChangeRegister() {
-    modalBody.html(`
-      <div class="form-group">
-                      <label for="">Nama</label>
-                      <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Masukan Nama ...">
-                  </div>
-      <div class="form-group">
-                      <label for="">Email</label>
-                      <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Masukan Email ...">
-                  </div>
-                  <div class="form-group">
-                      <label for="">Password</label>
-                      <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Masukan password ...">
-                  </div>
-                  <button type="button" class="btn btn-block bisylms-btn mb-3">Daftar</button>
-                  <small class="text-muted">Sudah punya akun? <a href='javascript:void(0)' onclick='handleChangeLogin()' class=''>Login</a> </small>`)
+    formLogin.removeClass('d-block').addClass('d-none');
+    formRegis.addClass('d-block');
+  }
+
+  function handleChangeLogin() {
+    formRegis.removeClass('d-block').addClass('d-none');
+    formLogin.addClass('d-block');
   }
 
   // menu account
   const menuList = $('#menu-list')
   const user = JSON.parse(localStorage.getItem('user'))
   if (user) {
+    $('#user-name').text(user.name)
+    $('input[name="input-user-name"]').val(user.name)
+    $('input[name="input-user-email"]').val(user.email)
     if (user.role === 'admin') {
       menuList.html(`<li class="list-group-item bg-transparent border-0">
                               <a href="">Dashboard</a>
                           </li>
                           <li class="list-group-item bg-transparent border-0">
-                              <a href="">Transaksi</a>
+                              <a href="<?= base_url('account/transaksi') ?>">Transaksi</a>
                           </li>
                           <li class="list-group-item bg-transparent border-0">
                               <a href="<?= base_url('account/kategori') ?>">Kategori</a>
@@ -423,10 +587,12 @@
                           </li> <li class="list-group-item bg-transparent  border-0">
                           <a href="javascript:void(0)" onclick='handleLogout()'>Log out</a></li>`)
     } else {
-      menuList.html(`<li class="list-group-item bg-transparent border-0">
-                              <a href="">Materi Belajar</a>
-                          </li>
-                          <li class="list-group-item bg-transparent  border-0"><a href="">Transaksi</a></li>
+      menuList.html(`
+      <li class="list-group-item bg-transparent  border-0"><a href="<?= base_url('account/profile') ?>">Profil</a></li>
+      <li class="list-group-item bg-transparent border-0">
+                              <a href="<?= base_url('account/materi') ?>">Materi Belajar</a>
+                              </li>
+                              <li class="list-group-item bg-transparent  border-0"><a href="<?= base_url('account/transaksi') ?>">Transaksi</a></li>
                           <li class="list-group-item bg-transparent  border-0"><a href="javascript:void(0)" onclick='handleLogout()'>Log out</a></li>`)
 
 
@@ -454,6 +620,27 @@
   } else {
     userIcon.html(`<a href='javascript:void(0)' data-toggle="modal" data-target="#modelId" class="user-btn"><i class="ti-user"></i></a>`)
   }
+
+  // format rupiah
+  function formatRupiah(angka) {
+    var number_string = String(angka).replace(/[^,\d]/g, '').toString(),
+      split = number_string.split(','),
+      sisa = split[0].length % 3,
+      rupiah = split[0].substr(0, sisa),
+      ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if (ribuan) {
+      let separator = sisa ? '.' : '';
+      rupiah += separator + ribuan.join('.');
+    }
+
+    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+    return 'Rp. ' + rupiah;
+  }
+
+  // menampilkan halaman dashboard user
+  $('#welcome-user').text(`Selamat datang ${user.name}`)
 </script>
 
 </body>

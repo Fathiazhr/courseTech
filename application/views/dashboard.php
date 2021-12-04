@@ -25,7 +25,7 @@
                         Raihlah mimpimu dengan mulai belajar
                         bersama CourseTech!
                     </p>
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#modelId" onclick="handleChangeRegister()" class="bisylms-btn">Join Now</a>
+                    <a href="javascript:void(0)" class="bisylms-btn">Join Now</a>
                 </div>
             </div>
             <div class="col-lg-7 col-md-7">

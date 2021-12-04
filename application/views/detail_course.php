@@ -272,40 +272,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="teacher-item-3">
-                                    <div class="teacher-thumb">
-                                        <img src="<?= base_url(); ?>assets/images/single-course/i2.jpg" alt="">
-                                    </div>
-                                    <div class="teacher-meta">
-                                        <h5><a href="#">Hugh Saturation</a></h5>
-                                        <span>Photographer</span>
-                                        <p>
-                                            I don't want no agro car boot lavatory wind up twit haggle spiffing show off show off pick your nose and blow off spend a penny David zonked what a plonker are you taking.
-                                        </p>
-                                        <div class="teacher-social">
-                                            <a href="#"><i class="social_facebook"></i></a>
-                                            <a href="#"><i class="social_twitter"></i></a>
-                                            <a href="#"><i class="social_linkedin"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="teacher-item-3">
-                                    <div class="teacher-thumb">
-                                        <img src="<?= base_url(); ?>assets/images/single-course/i3.jpg" alt="">
-                                    </div>
-                                    <div class="teacher-meta">
-                                        <h5><a href="#">Jim Séchen</a></h5>
-                                        <span>Stylist & Author</span>
-                                        <p>
-                                            I don't want no agro car boot lavatory wind up twit haggle spiffing show off show off pick your nose and blow off spend a penny David zonked what a plonker are you taking.
-                                        </p>
-                                        <div class="teacher-social">
-                                            <a href="#"><i class="social_facebook"></i></a>
-                                            <a href="#"><i class="social_twitter"></i></a>
-                                            <a href="#"><i class="social_linkedin"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <!-- Instructors Tab -->
                             <!-- Reviews Tab -->

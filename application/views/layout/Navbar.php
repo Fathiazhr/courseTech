@@ -71,7 +71,34 @@
                 </button>
             </div>
             <div class="modal-body" id="modalBody">
-
+                <div id='form-login'>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" name="" id="email" aria-describedby="emailHelpId" placeholder="Masukan Email ...">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" name="" id="password" aria-describedby="emailHelpId" placeholder="Masukan password ...">
+                    </div>
+                    <button type="button" name='login' class="btn btn-block bisylms-btn mb-3">Login</button>
+                    <small class="text-muted">Belum punya akun? <a href='javascript:void(0)' onclick='handleChangeRegister()'>Daftar Sekarang</a> </small>
+                </div>
+                <div id="form-register">
+                    <div class="form-group">
+                        <label for="">Nama</label>
+                        <input required type="text" class="form-control" name="regis-name" id="" aria-describedby="emailHelpId" placeholder="Masukan Nama ...">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input required type="email" class="form-control" name="regis-email" id="" aria-describedby="emailHelpId" placeholder="Masukan Email ...">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input required type="password" class="form-control" name="regis-password" id="" aria-describedby="emailHelpId" placeholder="Masukan password ...">
+                    </div>
+                    <button type="button" id="button-regis"' class="btn btn-block bisylms-btn mb-3">Daftar</button>
+                    <small class="text-muted">Sudah punya akun? <a href=' javascript:void(0)' onclick='handleChangeLogin()' class=''>Login</a> </small>
+                </div>
             </div>
         </div>
     </div>

@@ -6,8 +6,8 @@
                     <div class="d-flex justify-content-center align-items-center">
                         <img src="<?= base_url() ?>assets/images/blog/p1.jpg" alt="" class="rounded-circle">
                     </div>
-                    <h6 class="mt-2 text-center">
-                        Admin CourseTech
+                    <h6 class="mt-3 text-center" id='user-name'>
+
                     </h6>
                     <ul class="list-group bg-transparent" id="menu-list">
 
