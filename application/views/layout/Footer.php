@@ -250,6 +250,24 @@
     $("input[name='price']").val('')
     $("input[name='idKategori']").val('')
   })
+  $('a[name="update-kategori"]').click(function() {
+    
+  })
+  $('body').on('click', '.update-produk', function() {
+    const dataproduk = $(this).data('produk')
+    idProdukUpdate = dataproduk.id
+    buttonProdukFor = 'update'
+    console.log(idProdukUpdate)
+    $("[name='idKategori']").val(dataproduk.idKategori)
+    $("#produkinstructur").val(dataproduk.instructur)
+    $("#produkname").val(dataproduk.name)
+    $("#produkprice").val(dataproduk.price)
+    
+  })
+  // $(".update-produk").click(() => {
+  // })
+
+  
 
   // input nama kategori
   let namaKategori = ''
@@ -286,17 +304,17 @@
   $("button[name='button-produk']").click(() => {
     if (buttonProdukFor === 'update') {
       update(ref(database, `produk/${idProdukUpdate}`), {
-        name: namaKategori
+        idKategori: $("#produkkategori").val(),
+        instructur: $("#produkinstructur").val(),
+        name: $("#produkname").val(),
+        price: $("#produkprice").val(),
       }).then(() => {
         alert('kategori berhasil diubah')
+        $("#modalProduk").modal('hide')
       }).catch(e => {
         alert(`error ${e}`)
       })
     } else {
-      // const idProduk = listProduk.length + 1
-      // listProduk.map((item, index)=>{
-      //   console.log(item)
-      // })
       const idProdukArr = []
       dataProdukAdmin.data.map((item, index)=>{
         idProdukArr.push(item.id)
@@ -341,11 +359,8 @@
         <td>${snap.val().name}</td>
         <td>${item.instructur}</td>
               <td>
-              <a href="javascript:void(0)" name='update-produk' data-produk='${JSON.stringify(item)}' data-toggle="modal" data-target="#modalProduk">
-              <i class="fas fa-edit text-info mr-2"></i>
-              </a>
-              <a href="javascript:void(0)" name='update-produk' data-produk='${JSON.stringify(item)}' data-toggle="modal" data-target="#modalProduk">
-                <i class="fa fa-eye" aria-hidden="true"></i>
+              <a href="javascript:void(0)" name='update-produk' class="update-produk" data-produk='${JSON.stringify(item)}' data-toggle="modal" data-target="#modalProduk">
+                <i class="fas fa-edit text-info mr-2"></i>
               </a>
                   <a href="javascript:void(0)" name='hapus-produk' data-id="${item.id}">
                   <i class="fas fa-trash text-danger"></i>
