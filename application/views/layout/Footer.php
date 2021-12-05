@@ -292,6 +292,16 @@
     $("input[name='price']").val('')
     $("input[name='idKategori']").val('')
   })
+
+  $('button[name="tambah-customer"]').click(() => {
+    buttonUserFor = 'simpan'
+    $("#customeremail").val('')
+    $("#customername").val('')
+    $("#customerpassword").val('')
+    $("[name='role']").val('')
+  })
+
+
   $('a[name="update-kategori"]').click(function() {
     
   })
@@ -299,13 +309,32 @@
     const dataproduk = $(this).data('produk')
     idProdukUpdate = dataproduk.id
     buttonProdukFor = 'update'
-    console.log(idProdukUpdate)
     $("[name='idKategori']").val(dataproduk.idKategori)
     $("#produkinstructur").val(dataproduk.instructur)
     $("#produkname").val(dataproduk.name)
     $("#produkprice").val(dataproduk.price)
-    
   })
+  
+  $('body').on('click', '.update-user', function() {
+    buttonUserFor = 'update'
+    // const datauser = $(this).data('user');
+    // const newDataUser = JSON.parse(datauser)
+    const index = $(this).data('index') - 1;
+    const data = globalDataUser.data[index];
+    idUserUpdate = data.id
+     $("#customeremail").val(data.email);
+      $("#customername").val(data.name);
+      $("#customerpassword").val(data.password);
+      $("[name='role']").val(data.role);
+  })
+
+  $('body').on('click', '.hapus-user', function() {
+    remove(ref(database, `user/${$(this).data('id')}`)).then(() => {
+        alert('User berhasil dihapus')
+      }).catch(e => alert(`User gagal dihapus, error : ${e}`))
+  })
+  
+  
   // $(".update-produk").click(() => {
   // })
 
@@ -337,6 +366,44 @@
         name: namaKategori
       }).then(() => {
         alert('kategori berhasil ditambahkan')
+      }).catch(e => {
+        alert(`error ${e}`)
+      })
+    }
+  })
+
+  
+  $("button[name='button-customer']").click(() => {
+    if (buttonUserFor === 'update') {
+      update(ref(database, `user/${idUserUpdate}`), {
+        email: $("#customeremail").val(),
+        name: $("#customername").val(),
+        password: $("#customerpassword").val(),
+        role: $("#customerrole").val(),
+      }).then(() => {
+        alert('Customer berhasil diubah')
+        $("#modalCustomer").modal('hide')
+      }).catch(e => {
+        alert(`error ${e}`)
+      })
+      
+    } else {
+      console.log('globalDataUser',globalDataUser.data)
+      const idUserArr = []
+      globalDataUser.data.map((item, index)=>{
+        idUserArr.push(item.id)
+      })
+      const sortIduser = idUserArr.sort();
+      const lastId = sortIduser[sortIduser.length - 1] + 1;
+      set(ref(database, `user/${lastId}`), {
+        email: $("#customeremail").val(),
+        id: lastId,
+        name: $("#customername").val(),
+        password: $("#customerpassword").val(),
+        role: $("#customerrole").val(),
+      }).then(() => {
+        alert('User berhasil ditambahkan')
+        $("#modalCustomer").modal('hide')
       }).catch(e => {
         alert(`error ${e}`)
       })
@@ -427,6 +494,38 @@
       })
 
     })
+
+  })
+
+  let listUser = [],
+    idUserUpdate,
+    buttonUserFor = 'simpan';
+
+    var globalDataUser = {}
+
+  onValue(ref(database, 'user'), (snapshot) => {
+    const data = snapshot.val();
+    let htmlUser = ''
+    listUser = data.filter(item => item !== undefined || item !== null);
+    globalDataUser.data = listUser;
+    const nomer = 0;
+    const datauser = listUser.map((item, index)=>{
+      return `<tr>
+        <td>${++index}</td>
+        <td>${item.email}</td>w
+        <td>${item.name}</td>
+        <td>${item.role}</td>
+        <td>
+          <a href="javascript:void(0)" name='update-user' class="update-user" data-index="${index}" data-user='${JSON.stringify(item)}' data-toggle="modal" data-target="#modalCustomer">
+            <i class="fas fa-edit text-info mr-2"></i>
+          </a>
+          <a name='hapus-produk' class="hapus-user" data-id="${item.id}">
+            <i class="fas fa-trash text-danger"></i>
+          </a> 
+        </td>
+      </tr>`
+    })
+    $('#data-customer').html(datauser.toString().replaceAll(",",""))
 
   })
 
@@ -677,9 +776,6 @@
 
       })
     }
-
-
-
   })
 </script>
 
@@ -719,7 +815,7 @@
                               <a href="<?= base_url('account/produk') ?>">Produk</a>
                           </li>
                           <li class="list-group-item bg-transparent border-0">
-                              <a href="">Customer</a>
+                              <a href="<?= base_url('account/customer') ?>">Customer</a>
                           </li> <li class="list-group-item bg-transparent  border-0">
                           <a href="javascript:void(0)" onclick='handleLogout()'>Log out</a></li>`)
     } else {
