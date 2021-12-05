@@ -82,6 +82,8 @@
 <!-- Back To Top -->
 
 <!-- Start Include All JS -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="<?= base_url() ?>assets/js/jquery.js"></script>
 <script src="<?= base_url() ?>assets/js/bootstrap.min.js"></script>
 <script src="<?= base_url() ?>assets/js/jquery.appear.js"></script>
@@ -95,6 +97,7 @@
 <script src="<?= base_url() ?>assets/js/jquery.countdown.min.js"></script>
 <script src="<?= base_url() ?>assets/js/jquery.easing.1.3.js"></script>
 <script src="<?= base_url() ?>assets/js/jquery.shuffle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script src="<?= base_url() ?>assets/js/theme.js"></script>
 
@@ -233,6 +236,38 @@
       }).catch(e => alert(`produk gagal dihapus, error : ${e}`))
     })
 
+    $('body').on('change', '#transaksitanggalbeli', function() {
+      const tanggal = $("#transaksitanggalbeli").val().split("-");
+      const newTanggal = tanggal[2] + '/' + tanggal[1] + '/' + tanggal[0];
+      $("#transaksitanggalbeli").val(newTanggal)
+    })
+
+    $('body').on('click', '.edit-transaksi', function(e) {
+
+      const optional_config =  {
+        dateFormat: "Y-m-d",
+        minDate: "<?=date('d/m/Y')?>",
+      }
+
+      $(".datePicker").flatpickr(optional_config);
+
+
+      const data = dataProdukAdmin.data.map((item, index)=>{
+        return `<option value="${item.id}">${item.name}</option>`
+      })
+      data.unshift(`<option value="">Silahkan Pilih Produk</option>`)
+      $("#transksiProduk").html(data.toString().replaceAll(",",""))
+      const transaksi = $(this).data('transaksi')
+
+      idTransaksiUpdate = transaksi.id
+      buttonTransaksiFor = 'update'
+
+
+      $("#modalTransaksi").modal('show')
+      $("[name='idProduk']").val(transaksi.idProduk)
+      $("[name='tanggalPembelian']").val(transaksi.tanggalPembelian)
+    })
+
     // buka modal update kategori
     $('a[name="update-kategori"]').click(function() {
       let kategoriUpdate = $(this).data('kategori')
@@ -343,6 +378,20 @@
     }
   })
 
+  $("button[name='button-transaksi']").click(() => {
+      update(ref(database, `transaksi/${idTransaksiUpdate}`), {
+        idProduk: $("#transksiProduk").val(),
+        tanggalPembelian: $("#transaksitanggalbeli").val(),
+      }).then(() => {
+        alert('transaksi berhasil diubah')
+        $("#modalTransaksi").modal('hide')
+      }).catch(e => {
+        alert(`error ${e}`)
+      })
+  })
+
+  // idTransaksiUpdate
+
   // menampilkan produk untuk admin
 
   let listProduk = [],
@@ -419,6 +468,7 @@
 
         let products;
         let transactions;
+        
         $('a[name="buy-course"]').click(function() {
           const course = $(this).data('course');
           if (auth) {
@@ -586,6 +636,8 @@
   })
 
   // menampilkan transaksi per customer
+  let idTransaksiUpdate,
+  buttonTransaksiFor = 'update';
   onValue(ref(database, 'transaksi'), (snapshot) => {
     const data = snapshot.val();
     let htmlTransaksi = ''
@@ -605,6 +657,9 @@
           <td>${snap.val().price}</td>
           <td>${item.tanggalPembelian}</td>
                 <td>
+                    <a class='edit-transaksi' data-transaksi='${JSON.stringify(item)}'>
+                      <i class="fas fa-edit text-info mr-2"></i>
+                    </a> 
                     <a href="javascript:void(0)" name='hapus-transaksi' data-id="${item.id}">
                     <i class="fas fa-trash text-danger"></i>
                     </a> 
