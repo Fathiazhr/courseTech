@@ -226,6 +226,13 @@
 
     })
 
+    $('body').on('click', '.hapus-produk', function(e) {
+      const id = $(this).data('id');
+      remove(ref(database, `produk/${id}`)).then(() => {
+        alert('produk berhasil dihapus')
+      }).catch(e => alert(`produk gagal dihapus, error : ${e}`))
+    })
+
     // buka modal update kategori
     $('a[name="update-kategori"]').click(function() {
       let kategoriUpdate = $(this).data('kategori')
@@ -362,7 +369,7 @@
               <a href="javascript:void(0)" name='update-produk' class="update-produk" data-produk='${JSON.stringify(item)}' data-toggle="modal" data-target="#modalProduk">
                 <i class="fas fa-edit text-info mr-2"></i>
               </a>
-                  <a href="javascript:void(0)" name='hapus-produk' data-id="${item.id}">
+                  <a name='hapus-produk' class="hapus-produk" data-id="${item.id}">
                   <i class="fas fa-trash text-danger"></i>
                   </a> 
                   </td>
