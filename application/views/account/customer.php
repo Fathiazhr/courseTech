@@ -1,6 +1,6 @@
-<div class="d-flex justify-content-end">
+<!-- <div class="d-flex justify-content-end">
     <button type="button" name="tambah-customer" data-toggle="modal" data-target="#modalCustomer" class="btn bisylms-btn mb-3">Tambah Customer</button>
-</div>
+</div> -->
 <table class="table">
     <thead>
         <tr>
