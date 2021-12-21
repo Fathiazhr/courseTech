@@ -25,7 +25,7 @@
                         Raihlah mimpimu dengan mulai belajar
                         bersama CourseTech!
                     </p>
-                    <a href="javascript:void(0)" class="bisylms-btn">Join Now</a>
+                    <a href="javascript:void(0)"  data-toggle="modal" data-target="#modelId" class="bisylms-btn">Join Now</a>
                 </div>
             </div>
             <div class="col-lg-7 col-md-7">
@@ -72,25 +72,25 @@
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
                             <image id="data" width="64" height="64" xlink:href="<?= base_url(); ?>assets/images/home/data-image.png" />
                         </svg>
-                        <h4><a href="single-course.html">Data Analysis & Statistics</a></h4>
+                        <h4><a href="single-course.html">Web Development</a></h4>
                     </div>
                     <div class="course-item-1 text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="74" height="70" viewBox="0 0 74 70">
                             <image id="proposal" width="74" height="70" xlink:href="<?= base_url(); ?>assets/images/home/proposal-image.png" />
                         </svg>
-                        <h4><a href="single-course.html">Business & Management</a></h4>
+                        <h4><a href="single-course.html">UI/UX Design</a></h4>
                     </div>
                     <div class="course-item-1 text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="67" viewBox="0 0 80 67">
                             <image id="chat" width="80" height="67" xlink:href="<?= base_url(); ?>assets/images/home/chat-image.png" />
                         </svg>
-                        <h4><a href="single-course.html">Social Sciences</a></h4>
+                        <h4><a href="single-course.html">Mobile Development</a></h4>
                     </div>
                     <div class="course-item-1 text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="73" viewBox="0 0 58 73">
                             <image id="mind" width="58" height="73" xlink:href="<?= base_url(); ?>assets/images/home/mind-image.png" />
                         </svg>
-                        <h4><a href="single-course.html">Biology & Life Sciences</a></h4>
+                        <h4><a href="single-course.html">Programming Language</a></h4>
                     </div>
                 </div>
             </div>
@@ -145,14 +145,14 @@
                 <ul class="shaf-filter">
                     <li class="active" data-group="all">All</li>
                     <li data-group="development">Web Development</li>
-                    <li data-group="architecture">Architecture</li>
-                    <li data-group="engineering">Engineering</li>
-                    <li data-group="science">Data Science</li>
+                    <li data-group="language">Language</li>
+                    <li data-group="desain">Design</li>
+                    <li data-group="science">Computer Science</li>
                 </ul>
             </div>
         </div>
         <div class="row shafull-container">
-            <div class="col-lg-4 col-md-6 shaf-item" data-groups='["all", "science", "engineering"]'>
+            <div class="col-lg-4 col-md-6 shaf-item" data-groups='["all", "science"]'>
                 <div class="feature-course-item">
                     <div class="flipper">
                         <div class="front">
@@ -196,50 +196,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 shaf-item" data-groups='["all", "architecture"]'>
-                <div class="feature-course-item">
-                    <div class="flipper">
-                        <div class="front">
-                            <div class="fcf-thumb">
-                                <img src="<?= base_url(); ?>assets/images/home/course/2.png" alt="">
-                            </div>
-                            <p>Art & Design</p>
-                            <h4>The Art of Black and White Photography</h4>
-                            <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>14 Materi</a>
-
-                            </div>
-                        </div>
-                        <div class="back">
-                            <div class="fcf-thumb">
-                                <img src="<?= base_url(); ?>assets/images/home/course/2.png" alt="">
-                            </div>
-                            <a href="#" class="c-cate">Art & Design</a>
-                            <h4><a href="#">The Art of Black and White Photography</a></h4>
-                            <div class="ratings">
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <span>4.5 (2 Reviews)</span>
-                            </div>
-                            <div class="course-price">
-                                Rp. 430.000
-                                <span>Rp. 760.000</span>
-                            </div>
-                            <div class="author">
-                                <img src="<?= base_url(); ?>assets/images/home/course/author.png" alt="">
-                                <a href="#">Anthony</a>
-                            </div>
-                            <div class="fcf-bottom">
-                                <a href="#"><i class="icon_book_alt"></i>14 Materi</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-lg-4 col-md-6 shaf-item" data-groups='["all", "development"]'>
                 <div class="feature-course-item">
                     <div class="flipper">
@@ -247,7 +203,7 @@
                             <div class="fcf-thumb">
                                 <img src="<?= base_url(); ?>assets/images/home/course/3.png" alt="">
                             </div>
-                            <p>Business Study</p>
+                            <p>Web Development</p>
                             <h4>Learning jQuery Mobile for Beginners</h4>
                             <div class="fcf-bottom">
                                 <a href="#"><i class="icon_book_alt"></i>9 Materi</a>
@@ -257,7 +213,7 @@
                             <div class="fcf-thumb">
                                 <img src="<?= base_url(); ?>assets/images/home/course/3.png" alt="">
                             </div>
-                            <a href="#" class="c-cate">Business Study</a>
+                            <a href="#" class="c-cate">Mobile Development</a>
                             <h4><a href="#">Learning jQuery Mobile for Beginners</a></h4>
                             <div class="ratings">
                                 <i class="icon_star"></i>
@@ -290,7 +246,7 @@
                                 <img src="<?= base_url(); ?>assets/images/home/course/4.png" alt="">
                             </div>
                             <p>Web Development</p>
-                            <h4>Making Music with Other People</h4>
+                            <h4>Make a Perfect Website</h4>
                             <div class="fcf-bottom">
                                 <a href="#"><i class="icon_book_alt"></i>12 Materi</a>
 
@@ -301,7 +257,7 @@
                                 <img src="<?= base_url(); ?>assets/images/home/course/4.png" alt="">
                             </div>
                             <a href="#" class="c-cate">Web Development</a>
-                            <h4><a href="#">Making Music with Other People</a></h4>
+                            <h4><a href="#">Make a Perfect Website</a></h4>
                             <div class="ratings">
                                 <i class="icon_star"></i>
                                 <i class="icon_star"></i>
@@ -326,7 +282,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 shaf-item" data-groups='["all", "engineering"]'>
+            <div class="col-lg-4 col-md-6 shaf-item" data-groups='["all", "desain"]'>
                 <div class="feature-course-item">
                     <div class="flipper">
                         <div class="front">
@@ -370,15 +326,59 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 shaf-item" data-groups='["all", "science"]'>
+            <div class="col-lg-4 col-md-6 shaf-item" data-groups='["all", "desain"]'>
+                <div class="feature-course-item">
+                    <div class="flipper">
+                        <div class="front">
+                            <div class="fcf-thumb">
+                                <img src="<?= base_url(); ?>assets/images/home/course/2.png" alt="">
+                            </div>
+                            <p>UI/UX Design</p>
+                            <h4>Build System with Perfect Design</h4>
+                            <div class="fcf-bottom">
+                                <a href="#"><i class="icon_book_alt"></i>14 Materi</a>
+
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="fcf-thumb">
+                                <img src="<?= base_url(); ?>assets/images/home/course/2.png" alt="">
+                            </div>
+                            <a href="#" class="c-cate">UI/UX Design</a>
+                            <h4><a href="#">Build System with Perfect Design</a></h4>
+                            <div class="ratings">
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <span>4.5 (2 Reviews)</span>
+                            </div>
+                            <div class="course-price">
+                                Rp. 430.000
+                                <span>Rp. 760.000</span>
+                            </div>
+                            <div class="author">
+                                <img src="<?= base_url(); ?>assets/images/home/course/author.png" alt="">
+                                <a href="#">Anthony</a>
+                            </div>
+                            <div class="fcf-bottom">
+                                <a href="#"><i class="icon_book_alt"></i>14 Materi</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 shaf-item" data-groups='["all", "language"]'>
                 <div class="feature-course-item">
                     <div class="flipper">
                         <div class="front">
                             <div class="fcf-thumb">
                                 <img src="<?= base_url(); ?>assets/images/home/course/6.png" alt="">
                             </div>
-                            <p>Data Science</p>
-                            <h4>Buddhism and Modern Psychology</h4>
+                            <p>Programming Language</p>
+                            <h4>Kotlin Basic</h4>
                             <div class="fcf-bottom">
                                 <a href="#"><i class="icon_book_alt"></i>18 Materi</a>
 
@@ -388,8 +388,8 @@
                             <div class="fcf-thumb">
                                 <img src="<?= base_url(); ?>assets/images/home/course/6.png" alt="">
                             </div>
-                            <a href="#" class="c-cate">Data Science</a>
-                            <h4><a href="#">Buddhism and Modern Psychology</a></h4>
+                            <a href="#" class="c-cate">Programming Language</a>
+                            <h4><a href="#">Kotlin Basic</a></h4>
                             <div class="ratings">
                                 <i class="icon_star"></i>
                                 <i class="icon_star"></i>

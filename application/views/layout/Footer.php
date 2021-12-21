@@ -6,8 +6,8 @@
         <div class="cta-wrapper">
           <img src="<?= base_url(); ?>assets/images/home/2.png" alt="">
 
-          <h3>You can learn anything</h3>
-          <a href="javascript:void(0)" class="bisylms-btn">Join Now</a>
+          <h3>You can Learn <b>Anything</b></h3>
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#modelId" class="bisylms-btn">Join Now</a>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@
               +62 813-1706-6238
             </li>
             <li>
-              <i class="fa fa-envelope" aria-hidden="true"></i>courseTech@gmail.com
+              <i class="fa fa-envelope" aria-hidden="true"></i> courseTech@gmail.com
             </li>
           </ul>
         </aside>
@@ -195,14 +195,14 @@
     let dataFilter = ''
     listKategori = data.filter(item => item !== undefined || item !== null);
 
-    const DLKat = listKategori.map((item, index)=>{
+    const DLKat = listKategori.map((item, index) => {
       return `<option value="${item.id}">${item.name}</option>`
     });
     DLKat.unshift(`<option value="">Silahkan Pilih Kategori Produk</option>`);
 
-    console.log(DLKat)
 
-    $("#produkkategori").html(DLKat.toString().replaceAll(",",""))
+
+    $("#produkkategori").html(DLKat.toString().replaceAll(",", ""))
 
     data.filter(item => item !== undefined || item !== null).forEach((item, index) => {
       dataFilter += `<tr>
@@ -244,19 +244,19 @@
 
     $('body').on('click', '.edit-transaksi', function(e) {
 
-      const optional_config =  {
+      const optional_config = {
         dateFormat: "Y-m-d",
-        minDate: "<?=date('d/m/Y')?>",
+        minDate: "<?= date('d/m/Y') ?>",
       }
 
       $(".datePicker").flatpickr(optional_config);
 
 
-      const data = dataProdukAdmin.data.map((item, index)=>{
+      const data = dataProdukAdmin.data.map((item, index) => {
         return `<option value="${item.id}">${item.name}</option>`
       })
       data.unshift(`<option value="">Silahkan Pilih Produk</option>`)
-      $("#transksiProduk").html(data.toString().replaceAll(",",""))
+      $("#transksiProduk").html(data.toString().replaceAll(",", ""))
       const transaksi = $(this).data('transaksi')
 
       idTransaksiUpdate = transaksi.id
@@ -303,7 +303,7 @@
 
 
   $('a[name="update-kategori"]').click(function() {
-    
+
   })
   $('body').on('click', '.update-produk', function() {
     const dataproduk = $(this).data('produk')
@@ -314,7 +314,7 @@
     $("#produkname").val(dataproduk.name)
     $("#produkprice").val(dataproduk.price)
   })
-  
+
   $('body').on('click', '.update-user', function() {
     buttonUserFor = 'update'
     // const datauser = $(this).data('user');
@@ -322,23 +322,19 @@
     const index = $(this).data('index') - 1;
     const data = globalDataUser.data[index];
     idUserUpdate = data.id
-     $("#customeremail").val(data.email);
-      $("#customername").val(data.name);
-      $("#customerpassword").val(data.password);
-      $("[name='role']").val(data.role);
+    $("#customeremail").val(data.email);
+    $("#customername").val(data.name);
+    $("#customerpassword").val(data.password);
+    $("[name='role']").val(data.role);
   })
 
   $('body').on('click', '.hapus-user', function() {
     remove(ref(database, `user/${$(this).data('id')}`)).then(() => {
-        alert('User berhasil dihapus')
-      }).catch(e => alert(`User gagal dihapus, error : ${e}`))
+      alert('User berhasil dihapus')
+    }).catch(e => alert(`User gagal dihapus, error : ${e}`))
   })
-  
-  
-  // $(".update-produk").click(() => {
-  // })
 
-  
+
 
   // input nama kategori
   let namaKategori = ''
@@ -372,7 +368,7 @@
     }
   })
 
-  
+
   $("button[name='button-customer']").click(() => {
     if (buttonUserFor === 'update') {
       update(ref(database, `user/${idUserUpdate}`), {
@@ -386,11 +382,11 @@
       }).catch(e => {
         alert(`error ${e}`)
       })
-      
+
     } else {
-      console.log('globalDataUser',globalDataUser.data)
+      console.log('globalDataUser', globalDataUser.data)
       const idUserArr = []
-      globalDataUser.data.map((item, index)=>{
+      globalDataUser.data.map((item, index) => {
         idUserArr.push(item.id)
       })
       const sortIduser = idUserArr.sort();
@@ -425,7 +421,7 @@
       })
     } else {
       const idProdukArr = []
-      dataProdukAdmin.data.map((item, index)=>{
+      dataProdukAdmin.data.map((item, index) => {
         idProdukArr.push(item.id)
       })
       const sortIdProduk = idProdukArr.sort();
@@ -446,15 +442,15 @@
   })
 
   $("button[name='button-transaksi']").click(() => {
-      update(ref(database, `transaksi/${idTransaksiUpdate}`), {
-        idProduk: $("#transksiProduk").val(),
-        tanggalPembelian: $("#transaksitanggalbeli").val(),
-      }).then(() => {
-        alert('transaksi berhasil diubah')
-        $("#modalTransaksi").modal('hide')
-      }).catch(e => {
-        alert(`error ${e}`)
-      })
+    update(ref(database, `transaksi/${idTransaksiUpdate}`), {
+      idProduk: $("#transksiProduk").val(),
+      tanggalPembelian: $("#transaksitanggalbeli").val(),
+    }).then(() => {
+      alert('transaksi berhasil diubah')
+      $("#modalTransaksi").modal('hide')
+    }).catch(e => {
+      alert(`error ${e}`)
+    })
   })
 
   // idTransaksiUpdate
@@ -465,7 +461,7 @@
     idProdukUpdate,
     buttonProdukFor = 'simpan';
 
-    var dataProdukAdmin = {}
+  var dataProdukAdmin = {}
 
   onValue(ref(database, 'produk'), (snapshot) => {
     const data = snapshot.val();
@@ -501,7 +497,7 @@
     idUserUpdate,
     buttonUserFor = 'simpan';
 
-    var globalDataUser = {}
+  var globalDataUser = {}
 
   onValue(ref(database, 'user'), (snapshot) => {
     const data = snapshot.val();
@@ -509,7 +505,7 @@
     listUser = data.filter(item => item !== undefined || item !== null);
     globalDataUser.data = listUser;
     const nomer = 0;
-    const datauser = listUser.map((item, index)=>{
+    const datauser = listUser.map((item, index) => {
       return `<tr>
         <td>${++index}</td>
         <td>${item.email}</td>w
@@ -525,7 +521,7 @@
         </td>
       </tr>`
     })
-    $('#data-customer').html(datauser.toString().replaceAll(",",""))
+    $('#data-customer').html(datauser.toString().replaceAll(",", ""))
 
   })
 
@@ -567,7 +563,7 @@
 
         let products;
         let transactions;
-        
+
         $('a[name="buy-course"]').click(function() {
           const course = $(this).data('course');
           if (auth) {
@@ -602,7 +598,7 @@
                 kategori: course.kategori,
                 namaProduk: course.name
               })
-              alert('Pembelian Berhasil')
+              alert('Berhasil Mendaftar Kursus')
             } else {
               set(ref(database, `transaksi/${transactions[transactions.length - 1].id + 1}`), {
                 idProduk: course.id,
@@ -617,7 +613,7 @@
                 kategori: course.kategori,
                 namaProduk: course.name
               })
-              alert('Pembelian Berhasil')
+              alert('Berhasil Mendaftar Kursus')
             }
           } else {
             $('#modelId').modal('show');
@@ -693,7 +689,7 @@
 
 
   // menampilkan kursus yang dipilih customer
-  onValue(ref(database, 'produk-user'), (snapshot) => {
+  onValue(ref(database, '/produk-user'), (snapshot) => {
     const data = snapshot.val();
     let htmlProduk = ''
     if (data === null || data === undefined) {
@@ -702,26 +698,45 @@
         <h4>Anda belum berlangganan</h4>
       </div>`
     } else {
-      listProduk = data.filter(item => item !== undefined || item !== null);
-      listProduk.forEach((item, index) => {
-        let kategori;
-        htmlProduk += `<div class="col-lg-6 col-md-6">
-                                  <div class="feature-course-item-4">
-                                      <div class="fcf-thumb">
-                                          <img src="<?= base_url(); ?>assets/images/profile/1.jpg" alt="">
-                                          <a class="enroll" name='remove-course' href="javascript:void(0)" data-course='${JSON.stringify({...item})}'>Berhenti Langganan</a>
-                                      </div>
-                                      <div class="fci-details">
-                                          <a href="<?= base_url('/course/detail/') ?>${item.id}" class="c-cate"><i class="icon_tag_alt"></i>${item.kategori}</a>
-                                          <h4><a href="<?= base_url('/course/detail/') ?>${item.id}">${item.namaProduk}</a></h4>
-                                          <div class="author">
-                                              <img src="<?= base_url(); ?>assets/images/home3/course/a1.png" alt="">
-                                              <a href="#">${item.instructur}</a>
+      var arr_obj = Object.keys(data).map(key => {
+        return ({
+          ...data[key]
+        })
+      });
+      if (data.id !== undefined) {
+        htmlProduk += `<div class='d-flex w-100 mt-3 flex-column justify-content-center align-items-center'>
+      <img src='<?= base_url() ?>assets/images/home/course/4.png' />
+        <h4>Anda belum berlangganan</h4>
+      </div>`
+      } else {
+        listProduk = arr_obj.filter(item => item !== undefined || item !== null).filter(item => item.idUser === user.id)
+        if (listProduk.length > 0) {
+          listProduk.forEach((item, index) => {
+            let kategori;
+            htmlProduk += `<div class="col-lg-6 col-md-6">
+                                      <div class="feature-course-item-4">
+                                          <div class="fcf-thumb">
+                                              <img src="<?= base_url(); ?>assets/images/profile/1.jpg" alt="">
+                                              <a class="enroll" name='remove-course' href="javascript:void(0)" data-course='${JSON.stringify({...item})}'>Berhenti Langganan</a>
+                                          </div>
+                                          <div class="fci-details">
+                                              <a href="<?= base_url('/course/detail/') ?>${item.id}" class="c-cate"><i class="icon_tag_alt"></i>${item.kategori}</a>
+                                              <h4><a href="<?= base_url('/course/detail/') ?>${item.id}">${item.namaProduk}</a></h4>
+                                              <div class="author">
+                                                  <img src="<?= base_url(); ?>assets/images/home3/course/a1.png" alt="">
+                                                  <a href="#">${item.instructur}</a>
+                                              </div>
                                           </div>
                                       </div>
-                                  </div>
-                              </div>`
-      })
+                                  </div>`
+          })
+        } else {
+          htmlProduk += `<div class='d-flex w-100 mt-3 flex-column justify-content-center align-items-center'>
+        <img src='<?= base_url() ?>assets/images/home/course/4.png' />
+          <h4>Anda belum berlangganan</h4>
+        </div>`
+        }
+      }
     }
     $('#data-materi').html(htmlProduk)
 
@@ -736,16 +751,19 @@
 
   // menampilkan transaksi per customer
   let idTransaksiUpdate,
-  buttonTransaksiFor = 'update';
+    buttonTransaksiFor = 'update';
   onValue(ref(database, 'transaksi'), (snapshot) => {
     const data = snapshot.val();
+    var arr_obj = Object.keys(data).map(key => ({
+      ...data[key]
+    }));
     let htmlTransaksi = ''
     if (data !== null) {
       let listTransaksi = []
       if (user.role === 'admin') {
-        listTransaksi = data.filter(item => item !== undefined || item !== null);
+        listTransaksi = arr_obj.filter(item => item !== undefined || item !== null);
       } else {
-        listTransaksi = data.filter(item => item !== undefined || item !== null && item.idUser === user.id)
+        listTransaksi = arr_obj.filter(item => item !== undefined || item !== null).filter(item => item.idUser === user.id)
       }
 
       listTransaksi.forEach((item, index) => {
@@ -756,9 +774,11 @@
           <td>${snap.val().price}</td>
           <td>${item.tanggalPembelian}</td>
                 <td>
-                    <a class='edit-transaksi' data-transaksi='${JSON.stringify(item)}'>
-                      <i class="fas fa-edit text-info mr-2"></i>
-                    </a> 
+                ${user.role === 'admin' ? 
+                  `<a class='edit-transaksi' data-transaksi='${JSON.stringify(item)}'>
+                    <i class="fas fa-edit text-info mr-2"></i>
+                  </a>` :''
+                }
                     <a href="javascript:void(0)" name='hapus-transaksi' data-id="${item.id}">
                     <i class="fas fa-trash text-danger"></i>
                     </a> 
@@ -776,6 +796,23 @@
 
       })
     }
+  })
+
+
+  // menampilan detail produk
+  const idCourse = $('#detail-course').attr('data-idcourse')
+  get(child(ref(database), `produk/${idCourse}`)).then((snap) => {
+    console.log("🚀 ~ file: Footer.php ~ line 809 ~ get ~ snap", snap.val())
+    get(child(ref(database), `kategori/${snap.val().idKategori}`)).then((snapcat) => {
+
+      $('#course-name').text(snap.val().name)
+      $('#course-price').text(formatRupiah(snap.val().price))
+      $('#course-instructur').text(snap.val().instructur)
+      $('#course-kategori').text(snapcat.val().name)
+
+    })
+
+
   })
 </script>
 
@@ -803,7 +840,7 @@
     $('input[name="input-user-email"]').val(user.email)
     if (user.role === 'admin') {
       menuList.html(`<li class="list-group-item bg-transparent border-0">
-                              <a href="">Dashboard</a>
+                              <a href="<?= base_url('account') ?>">Dashboard</a>
                           </li>
                           <li class="list-group-item bg-transparent border-0">
                               <a href="<?= base_url('account/transaksi') ?>">Transaksi</a>
@@ -819,7 +856,9 @@
                           </li> <li class="list-group-item bg-transparent  border-0">
                           <a href="javascript:void(0)" onclick='handleLogout()'>Log out</a></li>`)
     } else {
-      menuList.html(`
+      menuList.html(`<li class="list-group-item bg-transparent border-0">
+                              <a href="<?= base_url('account') ?>">Dashboard</a>
+                          </li>
       <li class="list-group-item bg-transparent  border-0"><a href="<?= base_url('account/profile') ?>">Profil</a></li>
       <li class="list-group-item bg-transparent border-0">
                               <a href="<?= base_url('account/materi') ?>">Materi Belajar</a>

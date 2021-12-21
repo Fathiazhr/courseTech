@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <h2 class="banner-title">Daftar Kursus</h2>
                 <div class="bread-crumbs">
-                    <a href="index.html">Home</a> <span></span> Daftar Kursus
+                    <a href="<?= base_url('') ?>">Home</a> <span></span> Daftar Kursus
                 </div>
             </div>
         </div>
@@ -20,17 +20,6 @@
                 <div class="toolbar-wrapper-2">
                     <div class="toolbar-btn nav nav-tabs">
                     </div>
-                    <!-- <div class="sorting">
-                        <p>Urutkan berdasarkan:</p>
-                        <select name="orderby" class="orderby">
-                            <option value="menu_order" selected="selected">Default</option>
-                            <option value="new">Newest Course</option>
-                            <option value="popular">Popular Course</option>
-                            <option value="rating">Average Rating</option>
-                            <option value="price">Low to High</option>
-                            <option value="price-desc">High to Low</option>
-                        </select>
-                    </div> -->
                     <form class="search-box" method="post" action="#">
                         <input type="search" name="s" placeholder="Cari kursus...">
                         <button type="submit"><i class="ti-search"></i></button>
@@ -68,13 +57,12 @@
                     <aside class="widget">
                         <h3 class="widget-title">Kategori</h3>
                         <ul>
-                            <li><a href="#">Web Design</a></li>
-                            <li><a href="#">Marketing</a></li>
-                            <li><a href="#">Frontend</a></li>
+                            <li><a href="#">Web Developmment</a></li>
+                            <li><a href="#">Mobile Development</a></li>
                             <li><a href="#">IT &amp; Software</a></li>
-                            <li><a href="#">Photography</a></li>
-                            <li><a href="#">Technology</a></li>
-                            <li><a href="#">General</a></li>
+                            <li><a href="#">UI/UX Design</a></li>
+                            <li><a href="#">Programming Language</a></li>
+                            <li><a href="#">Computer Science</a></li>
                         </ul>
                     </aside>
                 </div>

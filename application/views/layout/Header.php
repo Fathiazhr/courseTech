@@ -29,6 +29,6 @@
     <!-- End Include All CSS -->
 
     <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" >
     <!-- Favicon Icon -->
 </head>

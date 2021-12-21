@@ -1,3 +1,4 @@
+<div id="detail-course" data-idcourse="<?= $id; ?>"></div>
 <!-- Banner Start -->
 <section class="page-banner" style="background-image: url(assets/images/banner5.jpg);">
     <div class="container">
@@ -20,16 +21,16 @@
             <div class="col-lg-9">
                 <div class="single-course-area">
                     <div class="course-top">
-                        <h4>Using Creative Problem Solving</h4>
+                        <h4 id="course-name">Build System with Perfect Design</h4>
                         <div class="course-meta">
                             <div class="author">
                                 <img src="<?= base_url(); ?>assets/images/home3/course/a1.png" alt="">
-                                <span>Teacher</span>
-                                <a href="#">Anthony</a>
+                                <span>instructur</span>
+                                <a href="#" id="course-instructur">Anthony</a>
                             </div>
                             <div class="categories">
                                 <span>Categories:</span>
-                                <a href="#">Art & Design</a>
+                                <a href="#" id="course-kategori">UI/UX Design</a>
                             </div>
                             <div class="ratings">
                                 <span>4.5 (9 Reviews)</span>
@@ -40,9 +41,7 @@
                                 <i class="icon_star"></i>
                             </div>
                         </div>
-                        <div class="course-price">
-                            $75.00
-                            <span>$92.00</span>
+                        <div class="course-price" id="course-price">
                         </div>
                     </div>
                     <div class="sc-thumb">
@@ -94,7 +93,7 @@
                                     <div class="card-header" id="cc_1">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#acc_1" aria-expanded="true" aria-controls="acc_1">
-                                                Understanding Customer Service
+                                                Introduction
                                             </button>
                                         </h5>
                                     </div>
@@ -103,7 +102,7 @@
                                             <div class="ci-item with-bg">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">Identifying Customer Expectations</a>
+                                                    <a href="#">User Interface</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="time">02 hour</a>
@@ -113,7 +112,7 @@
                                             <div class="ci-item">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">Customer Service And The Telephone</a>
+                                                    <a href="#">User Experience</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="time">04 hour</a>
@@ -123,7 +122,7 @@
                                             <div class="ci-item with-bg">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">Handling Complaints</a>
+                                                    <a href="#">Design Thinking</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="time">03 hour</a>
@@ -133,7 +132,7 @@
                                             <div class="ci-item">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">Customer Service Skills - Course Assessment</a>
+                                                    <a href="#">Brainstroming</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="time">03 hour</a>
@@ -143,7 +142,7 @@
                                             <div class="ci-item with-bg">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">Focusing On The Customer</a>
+                                                    <a href="#">Prototype</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="time">01 hour</a>
@@ -157,7 +156,7 @@
                                     <div class="card-header" id="cc_2">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#acc_2" aria-expanded="true" aria-controls="acc_2">
-                                                Handling Complaints
+                                                Design Thinking
                                             </button>
                                         </h5>
                                     </div>
@@ -166,7 +165,7 @@
                                             <div class="ci-item with-bg">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">Handling Complaints</a>
+                                                    <a href="#">Empathize</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="time">02 hour</a>
@@ -176,7 +175,7 @@
                                             <div class="ci-item">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">Customer Service And The Telephone</a>
+                                                    <a href="#">Define</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="time">04 hour</a>
@@ -186,7 +185,7 @@
                                             <div class="ci-item with-bg">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">WooCommerce Payments</a>
+                                                    <a href="#">Ideate</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="questions">4 questions</a>
@@ -201,7 +200,7 @@
                                     <div class="card-header" id="cc_3">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#acc_3" aria-expanded="true" aria-controls="acc_3">
-                                                Pellentesque Pretium
+                                                Prototyping
                                             </button>
                                         </h5>
                                     </div>
@@ -210,7 +209,7 @@
                                             <div class="ci-item with-bg">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">How to Use WordPress</a>
+                                                    <a href="#">How to Protoyping Easily</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="time">02 hour</a>
@@ -220,7 +219,7 @@
                                             <div class="ci-item">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">Certificate On Theme Development</a>
+                                                    <a href="#">Repair</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="time">04 hour</a>
@@ -230,7 +229,7 @@
                                             <div class="ci-item with-bg">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">Focusing On The Customer</a>
+                                                    <a href="#">Testing with Maze</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="questions">4 questions</a>
@@ -241,7 +240,7 @@
                                             <div class="ci-item">
                                                 <h5>
                                                     <i class="icon_menu-square_alt2"></i>
-                                                    <a href="#">Identifying Customer Expectations</a>
+                                                    <a href="#">Report</a>
                                                 </h5>
                                                 <div class="ci-tools">
                                                     <a href="#" class="time">03 hour</a>

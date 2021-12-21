@@ -27,10 +27,10 @@ class Course extends CI_Controller
         $this->load->view('layout/Footer');
     }
 
-    public function detail()
+    public function detail($id)
     {
         $this->load->view('layout/Header');
-        $this->load->view('layout/Navbar', ["forAct" => '']);
+        $this->load->view('layout/Navbar', ["forAct" => '', 'id' => $id]);
         $this->load->view('detail_course');
         $this->load->view('layout/Footer');
     }
